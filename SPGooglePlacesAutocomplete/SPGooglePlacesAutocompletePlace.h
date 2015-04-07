@@ -29,6 +29,11 @@
 /*!
  Contains a unique token that you can use to retrieve additional information about this place in a Place Details request. You can store this token and use it at any time in future to refresh cached data about this Place, but the same token is not guaranteed to be returned for any given Place across different searches.
  */
+@property (nonatomic, strong, readonly) NSString *placeID;
+
+/*!
+ Contains a unique token that you can use to retrieve additional information about this place in a Place Details request. You can store this token and use it at any time in future to refresh cached data about this Place, but the same token is not guaranteed to be returned for any given Place across different searches.
+ */
 @property (nonatomic, strong, readonly) NSString *reference;
 
 /*!

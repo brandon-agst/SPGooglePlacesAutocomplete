@@ -11,6 +11,7 @@
 
 @interface SPGooglePlacesAutocompletePlace()
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *placeID;
 @property (nonatomic, strong) NSString *reference;
 @property (nonatomic, strong) NSString *identifier;
 @property (nonatomic) SPGooglePlacesAutocompletePlaceType type;
@@ -18,10 +19,10 @@
 
 @implementation SPGooglePlacesAutocompletePlace
 
-+ (SPGooglePlacesAutocompletePlace *)placeFromDictionary:(NSDictionary *)placeDictionary apiKey:(NSString *)apiKey
-{
++ (SPGooglePlacesAutocompletePlace *)placeFromDictionary:(NSDictionary *)placeDictionary apiKey:(NSString *)apiKey {
     SPGooglePlacesAutocompletePlace *place = [[self alloc] init];
     place.name = placeDictionary[@"description"];
+    place.placeID = placeDictionary[@"place_id"];
     place.reference = placeDictionary[@"reference"];
     place.identifier = placeDictionary[@"id"];
     place.type = SPPlaceTypeFromDictionary(placeDictionary);
@@ -30,8 +31,8 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"Name: %@, Reference: %@, Identifier: %@, Type: %@",
-            self.name, self.reference, self.identifier, SPPlaceTypeStringForPlaceType(self.type)];
+    return [NSString stringWithFormat:@"Name: %@, PlaceID: %@, Reference: %@, Identifier: %@, Type: %@",
+            self.name, self.placeID, self.reference, self.identifier, SPPlaceTypeStringForPlaceType(self.type)];
 }
 
 - (CLGeocoder *)geocoder {
